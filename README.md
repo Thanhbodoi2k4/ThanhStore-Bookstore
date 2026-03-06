@@ -38,13 +38,6 @@ Sinh viên thực hiện: **Nguyễn Đình Thanh** ---
 
 ---
 
-## 🔐 TÀI KHOẢN TRẢI NGHIỆM (TESTING)
-
-**Tài khoản Nhân viên:**
-* **Email:** `nhanvien01@gmail.com`
-* **Password:** `123`
-
----
 
 ## 💻 HƯỚNG DẪN CÀI ĐẶT MÔI TRƯỜNG LOCAL
 
