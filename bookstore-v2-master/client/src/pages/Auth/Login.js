@@ -74,7 +74,7 @@ function Login() {
       setLoading(true)
       const res = await authApi.login({email, password})
       setLoading(false)
-     
+      
       // Nhan token tu server
       const { token, user } = res
       localStorage.setItem('accessToken', token)
@@ -146,7 +146,8 @@ function Login() {
           
             <div className="d-flex justify-content-between">
               <div className={styles.boxLoginThirdParty}>
-                <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png" alt="" />
+                {/* Đã sửa link ảnh Google bằng link chính chủ Firebase/Google */}
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" />
                 <OAuth2Login  
                     className="bookstore-btn"
                     buttonText="Login with Google"
@@ -161,7 +162,8 @@ function Login() {
               </div>
 
               <div className={styles.boxLoginThirdParty}>
-                <img src="https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_1280.png" alt="" />
+                {/* Đã sửa link ảnh Facebook thành dạng SVG không bao giờ hỏng */}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" />
                 <OAuth2Login
                   className="bookstore-btn"
                   buttonText="Login with Facebook"
