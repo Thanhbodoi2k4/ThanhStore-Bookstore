@@ -86,9 +86,9 @@ const orderController = {
             const host = req.get('origin')
             const link = `${host}/thanhtoan/momo/callback`
 
-            const partnerCode = "MOMO";
-            const accessKey = "F8BBA842ECF85";
-            const secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            const partnerCode = process.env.MOMO_PARTNER_CODE || "MOMO";
+            const accessKey = process.env.MOMO_ACCESS_KEY;
+            const secretkey = process.env.MOMO_SECRET_KEY;
             const requestId = paymentId;
             const orderId = requestId;
             const orderInfo = "Thanh toán mua hàng tại BookStore";
@@ -136,9 +136,9 @@ const orderController = {
         try {
             const { paymentId } = req.body
 
-            const partnerCode = "MOMO";
-            const accessKey = "F8BBA842ECF85";
-            const secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            const partnerCode = process.env.MOMO_PARTNER_CODE || "MOMO";
+            const accessKey = process.env.MOMO_ACCESS_KEY;
+            const secretkey = process.env.MOMO_SECRET_KEY;
 
             const rawSignature = "accessKey=" + accessKey + "&orderId=" + paymentId + "&partnerCode=" + partnerCode + "&requestId=" + paymentId
             const signature = crypto.createHmac('sha256', secretkey).update(rawSignature).digest('hex');
@@ -189,8 +189,8 @@ const orderController = {
             
             const ipAddr = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress || '127.0.0.1';
             
-            const tmnCode = "CGXZLS0Z";
-            const secretKey = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN";
+            const tmnCode = process.env.VNPAY_TMN_CODE;
+            const secretKey = process.env.VNPAY_SECRET_KEY;
             let vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
             const returnUrl = `${req.get('origin')}/thanhtoan/vnpay/callback`;
             const orderId = paymentId;
@@ -239,7 +239,7 @@ const orderController = {
 
             vnp_Params = sortObject(vnp_Params);
 
-            const secretKey = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN";
+            const secretKey = process.env.VNPAY_SECRET_KEY;
             const signData = Object.keys(vnp_Params).map(key => key + '=' + vnp_Params[key]).join('&');
             const hmac = crypto.createHmac("sha512", secretKey);
             const signed = hmac.update(Buffer.from(signData, 'utf-8')).digest("hex");     

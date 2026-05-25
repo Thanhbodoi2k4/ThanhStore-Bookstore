@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         type: 'OAuth2',
         // Đã sửa thành email của bạn (email cấu hình lấy mã OAuth2)
-        user: 'godboyvietnam@gmail.com', 
+        user: process.env.GOOGLE_GMAIL_USER, 
         clientId: process.env.GOOGLE_GMAIL_CLIENT_ID,
         accessToken,
         clientSecret: process.env.GOOGLE_GMAIL_CLIENT_SECRET,
