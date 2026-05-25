@@ -1,0 +1,305 @@
+/* ===================================================
+   ADMIN GLOBAL OVERRIDE - CYBERPUNK DARK THEME
+   ThanhStore Admin Panel
+=================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap');
+
+/* ===== GLOBAL ADMIN RESETS ===== */
+.contentWrapperAdmin *,
+.contentWrapperAdmin *::before,
+.contentWrapperAdmin *::after {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== ADMIN CONTENT WRAPPER BLOCKS ===== */
+.admin-content-wrapper {
+    background: linear-gradient(135deg, rgba(13, 13, 43, 0.9), rgba(15, 15, 40, 0.95)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+    overflow: hidden;
+    margin: 20px 28px;
+    backdrop-filter: blur(20px);
+}
+
+.admin-content-header {
+    padding: 18px 24px;
+    background: rgba(99, 102, 241, 0.07) !important;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2) !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: rgba(167, 139, 250, 0.9) !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.admin-content-header::before {
+    content: '◆';
+    font-size: 8px;
+    color: #6366f1;
+    filter: drop-shadow(0 0 4px #6366f1);
+}
+
+.admin-content-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.4), transparent);
+}
+
+.admin-content-body {
+    padding: 20px 24px !important;
+}
+
+/* ===== BOOTSTRAP TABLE OVERRIDE ===== */
+.admin-content-body .table,
+.contentWrapperAdmin .table {
+    color: rgba(203, 213, 225, 0.85) !important;
+    border-color: rgba(99, 102, 241, 0.15) !important;
+    margin-bottom: 0 !important;
+}
+
+.admin-content-body .table > thead > tr > th,
+.contentWrapperAdmin .table > thead > tr > th {
+    background: rgba(99, 102, 241, 0.12) !important;
+    color: rgba(148, 163, 184, 0.8) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+    padding: 14px 16px !important;
+    white-space: nowrap;
+}
+
+.admin-content-body .table > tbody > tr > td,
+.contentWrapperAdmin .table > tbody > tr > td {
+    border-color: rgba(99, 102, 241, 0.08) !important;
+    padding: 14px 16px !important;
+    vertical-align: middle !important;
+    color: rgba(203, 213, 225, 0.8) !important;
+    font-size: 13.5px !important;
+    transition: background 0.2s ease;
+}
+
+.admin-content-body .table-hover > tbody > tr:hover > td,
+.admin-content-body .table-hover > tbody > tr:hover > th,
+.contentWrapperAdmin .table-hover > tbody > tr:hover > td {
+    background: rgba(99, 102, 241, 0.08) !important;
+    color: #e2e8f0 !important;
+}
+
+.admin-content-body .table > tbody > tr > td b,
+.contentWrapperAdmin .table > tbody > tr > td b {
+    color: #e2e8f0 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== PRICE STYLE ===== */
+.price {
+    color: #818cf8 !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+}
+
+/* ===== BOOTSTRAP BUTTON OVERRIDE ===== */
+.contentWrapperAdmin .btn,
+.admin-content-body .btn {
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 6px 14px !important;
+    transition: all 0.2s ease !important;
+    border: 1px solid transparent !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.contentWrapperAdmin .btn-success,
+.admin-content-body .btn-success {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-color: rgba(16, 185, 129, 0.4) !important;
+    color: #34d399 !important;
+}
+.contentWrapperAdmin .btn-success:hover,
+.admin-content-body .btn-success:hover {
+    background: rgba(16, 185, 129, 0.25) !important;
+    border-color: rgba(16, 185, 129, 0.7) !important;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.contentWrapperAdmin .btn-primary,
+.admin-content-body .btn-primary {
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    color: #818cf8 !important;
+}
+.contentWrapperAdmin .btn-primary:hover,
+.admin-content-body .btn-primary:hover {
+    background: rgba(99, 102, 241, 0.25) !important;
+    border-color: rgba(99, 102, 241, 0.7) !important;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.contentWrapperAdmin .btn-danger,
+.admin-content-body .btn-danger {
+    background: rgba(239, 68, 68, 0.12) !important;
+    border-color: rgba(239, 68, 68, 0.35) !important;
+    color: #f87171 !important;
+}
+.contentWrapperAdmin .btn-danger:hover,
+.admin-content-body .btn-danger:hover {
+    background: rgba(239, 68, 68, 0.22) !important;
+    border-color: rgba(239, 68, 68, 0.6) !important;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.3) !important;
+}
+
+.contentWrapperAdmin .btn-warning,
+.admin-content-body .btn-warning {
+    background: rgba(245, 158, 11, 0.12) !important;
+    border-color: rgba(245, 158, 11, 0.35) !important;
+    color: #fbbf24 !important;
+}
+
+/* ===== FORM CONTROLS ===== */
+.contentWrapperAdmin .form-control,
+.contentWrapperAdmin .form-select {
+    background: rgba(13, 13, 43, 0.8) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    color: #e2e8f0 !important;
+    border-radius: 8px !important;
+    font-size: 13.5px !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.2s ease !important;
+}
+.contentWrapperAdmin .form-control:focus,
+.contentWrapperAdmin .form-select:focus {
+    background: rgba(13, 13, 43, 0.95) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+    color: #e2e8f0 !important;
+}
+.contentWrapperAdmin .form-control::placeholder {
+    color: rgba(100, 116, 139, 0.7) !important;
+}
+.contentWrapperAdmin .form-label {
+    color: rgba(148, 163, 184, 0.8) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 6px !important;
+}
+
+/* ===== BADGE OVERRIDE ===== */
+.contentWrapperAdmin .badge {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 4px 10px !important;
+    border-radius: 20px !important;
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* ===== MODAL OVERRIDE ===== */
+.contentWrapperAdmin .modal-content,
+.modal-content {
+    background: linear-gradient(135deg, #0d0d2b, #13133a) !important;
+    border: 1px solid rgba(99, 102, 241, 0.35) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15) !important;
+    color: #e2e8f0 !important;
+}
+.modal-header {
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2) !important;
+    padding: 16px 24px !important;
+}
+.modal-title {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    color: #c7d2fe !important;
+}
+.modal-body {
+    padding: 24px !important;
+    color: rgba(203, 213, 225, 0.85) !important;
+}
+.modal-footer {
+    border-top: 1px solid rgba(99, 102, 241, 0.2) !important;
+    padding: 16px 24px !important;
+}
+.btn-close {
+    filter: invert(1) opacity(0.6) !important;
+    transition: all 0.2s !important;
+}
+.btn-close:hover {
+    filter: invert(1) opacity(1) !important;
+}
+
+/* ===== PAGINATION OVERRIDE ===== */
+.contentWrapperAdmin .pagination .page-link {
+    background: rgba(13, 13, 43, 0.8) !important;
+    border-color: rgba(99, 102, 241, 0.25) !important;
+    color: rgba(148, 163, 184, 0.8) !important;
+    font-size: 13px !important;
+    transition: all 0.2s ease !important;
+}
+.contentWrapperAdmin .pagination .page-link:hover {
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    color: #c7d2fe !important;
+}
+.contentWrapperAdmin .pagination .page-item.active .page-link {
+    background: rgba(99, 102, 241, 0.3) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
+    color: #c7d2fe !important;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* ===== ADMIN CONTENT PAGINATION ===== */
+.admin-content-pagination {
+    padding: 16px 0 0;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+    margin-top: 8px;
+}
+
+/* ===== SCROLLBAR ===== */
+.contentWrapperAdmin ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.contentWrapperAdmin ::-webkit-scrollbar-track {
+    background: rgba(13, 13, 43, 0.5);
+}
+.contentWrapperAdmin ::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 10px;
+}
+.contentWrapperAdmin ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.7);
+}
+
+/* ===== ROW OVERRIDE ===== */
+.contentWrapperAdmin .row {
+    margin: 0;
+}
+
+/* ===== LOADING SPINNER ===== */
+.contentWrapperAdmin .spinner-border {
+    color: #6366f1 !important;
+    width: 2rem !important;
+    height: 2rem !important;
+}

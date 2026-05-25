@@ -10,9 +10,9 @@ const data = [
     },
     {
         value: 2,
-        name: "Paypal",
-        image: "https://www.paypalobjects.com/webstatic/icon/pp258.png"
-    },
+        name: "VNPay",
+        image: "https://vnpay.vn/s1/statics.vnpay.vn/2023/6/0oxhzjmxbksr1686814746087.png"
+    }
 ]
 
 export default data

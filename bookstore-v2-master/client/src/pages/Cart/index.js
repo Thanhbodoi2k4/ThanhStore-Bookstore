@@ -135,6 +135,7 @@ function Cart() {
                         price={item.product.price}
                         quantity={item.quantity}
                         totalPriceItem={item.totalPriceItem}
+                        stock={item.product.stock}
                       ></CartItem>
                     ))}
                   </tbody>

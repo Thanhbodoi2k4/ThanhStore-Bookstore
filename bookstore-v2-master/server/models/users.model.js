@@ -21,13 +21,17 @@ const userSchema = new Schema({
     avatar: { 
         url: { 
             type: String, 
-            // Đã cập nhật link ảnh từ kho dqp9nm103 của bạn
-            default: 'https://res.cloudinary.com/dqp9nm103/image/upload/v1772793585/d3f5f4abfaae685b9cb7be801388b4c1_xatx84.jpg' 
+            default: function() {
+                const zodiacs = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+                const randomZodiac = zodiacs[Math.floor(Math.random() * zodiacs.length)];
+                // Sử dụng DiceBear để tạo ra 1 avatar dễ thương dựa trên tên con giáp làm mã seed (tạm thời)
+                // Bạn có thể thay link này bằng 1 mảng chứa 12 link ảnh thực tế của bạn trên Cloudinary
+                return `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(randomZodiac)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffdfbf,ffd5dc`;
+            }
         },
         publicId: { 
             type: String, 
-            // Thêm publicId mặc định để đồng bộ với link ảnh trên
-            default: 'd3f5f4abfaae685b9cb7be801388b4c1_xatx84' 
+            default: 'default_zodiac_avatar' 
         }
      },
     address: [{

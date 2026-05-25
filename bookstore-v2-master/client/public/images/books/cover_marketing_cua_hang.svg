@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7f1d1d"/>
+      <stop offset=".55" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="600" rx="18" fill="url(#bg)"/>
+  <path d="M76 330 h268 v152 h-268z" fill="#fff7ed"/>
+  <path d="M58 330 h304 l-38-86 h-228z" fill="#991b1b"/>
+  <path d="M96 244 h228" stroke="#fde68a" stroke-width="14" stroke-dasharray="38 18"/>
+  <rect x="116" y="382" width="70" height="100" fill="#fed7aa"/>
+  <rect x="218" y="374" width="82" height="52" rx="8" fill="#fb923c"/>
+  <path d="M130 174 C174 132 226 132 274 174" stroke="#fde68a" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <circle cx="130" cy="174" r="13" fill="#fde68a"/><circle cx="274" cy="174" r="13" fill="#fde68a"/>
+  <text x="210" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffedd5" font-weight="700">BÁN HÀNG THỰC CHIẾN</text>
+  <text x="210" y="156" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#ffffff" font-weight="700">MARKETING</text>
+  <text x="210" y="216" text-anchor="middle" font-family="Georgia, serif" font-size="37" fill="#fde68a" font-weight="700">CHO CỬA HÀNG NHỎ</text>
+  <text x="210" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#7f1d1d">ThanhStore Biên soạn</text>
+</svg>

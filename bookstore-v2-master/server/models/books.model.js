@@ -40,7 +40,9 @@ const bookSchema = new Schema({
     price: { type: Number, required: true },
     discount:  { type: Number, default: 0 },
     imageUrl: { type: String, default: 'https://itbook.store/img/books/9781617294136.png'},
-    publicId: { type: String }
+    publicId: { type: String },
+    isFeatured: { type: Boolean, default: false },
+    stock: { type: Number, default: 0 }
   
 }, {
     timestamps: true

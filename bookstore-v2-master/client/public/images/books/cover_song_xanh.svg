@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ecfccb"/>
+      <stop offset=".55" stop-color="#86efac"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="600" rx="18" fill="url(#bg)"/>
+  <path d="M210 410 C122 334 112 220 210 146 C308 220 298 334 210 410 Z" fill="#f0fdf4" opacity=".88"/>
+  <path d="M210 402 C214 318 210 235 210 154" stroke="#047857" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M210 310 C170 292 148 260 134 218 M211 342 C254 318 280 278 292 232" stroke="#047857" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <circle cx="108" cy="430" r="44" fill="#d9f99d" opacity=".8"/>
+  <circle cx="318" cy="438" r="52" fill="#bbf7d0" opacity=".7"/>
+  <text x="210" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#065f46" font-weight="700">THÓI QUEN NHỎ, THAY ĐỔI LỚN</text>
+  <text x="210" y="170" text-anchor="middle" font-family="Georgia, serif" font-size="43" fill="#064e3b" font-weight="700">SỔ TAY</text>
+  <text x="210" y="230" text-anchor="middle" font-family="Georgia, serif" font-size="61" fill="#ffffff" font-weight="700">SỐNG XANH</text>
+  <text x="210" y="284" text-anchor="middle" font-family="Georgia, serif" font-size="37" fill="#064e3b" font-weight="700">MỖI NGÀY</text>
+  <text x="210" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#064e3b">Nhiều tác giả</text>
+</svg>

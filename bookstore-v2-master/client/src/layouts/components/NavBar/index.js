@@ -1,11 +1,29 @@
 import { memo, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 
 import styles from './NavBar.module.css';
+
 function NavBar() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const scrollToSection = (sectionId) => {
+        if (location.pathname !== '/') {
+            // Navigate to home first, then scroll
+            navigate('/');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        } else {
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className={`navbar ${styles.navbar}`}>
             <div className={styles.navItem}>
@@ -17,6 +35,12 @@ function NavBar() {
             <div className={styles.navItem}>
                 <NavLink to="/khuyen-mai" className={({isActive}) => isActive ? `${styles.active}` : null}>Khuyến mãi</NavLink>
             </div>
+            <div className={styles.navItem}>
+                <button type="button" className={styles.navBtn} onClick={() => scrollToSection('about')}>Giới thiệu</button>
+            </div>
+            <div className={styles.navItem}>
+                <button type="button" className={styles.navBtn} onClick={() => scrollToSection('contact')}>Liên hệ</button>
+            </div>
         </div>
     )
 
@@ -25,6 +49,22 @@ function NavBar() {
 export function NavBarMobile() {
 
     const [show, setShow] = useState(false)
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const scrollToSection = (sectionId) => {
+        setShow(false);
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        } else {
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className={`navbar ${styles.navbarMobile}`}>
@@ -38,6 +78,12 @@ export function NavBarMobile() {
                 </div>
                 <div className={styles.navItem}>
                     <NavLink to="/khuyen-mai" className={({isActive}) => isActive ? `${styles.active}` : null}>Khuyến mãi</NavLink>
+                </div>
+                <div className={styles.navItem}>
+                    <button type="button" className={styles.navBtn} onClick={() => scrollToSection('about')}>Giới thiệu</button>
+                </div>
+                <div className={styles.navItem}>
+                    <button type="button" className={styles.navBtn} onClick={() => scrollToSection('contact')}>Liên hệ</button>
                 </div>
            </div>
         </div>

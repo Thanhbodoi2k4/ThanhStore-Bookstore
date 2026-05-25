@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700&display=swap');
+
 .accountSideBar,
 .contentWrapper {
     background-color: rgba(106, 189, 69, 0.12);
@@ -7,9 +9,69 @@
     border-radius: 5px;
 }
 
+/* ===== ADMIN LAYOUT WRAPPER ===== */
 .contentWrapperAdmin {
-    margin-left: 240px;
-    background-color: #f4f6f9;
+    margin-left: 260px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #060614 0%, #0a0a1f 40%, #050510 100%);
+    background-attachment: fixed;
     overflow: hidden;
-    padding: 20px;
+    padding: 0;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Subtle grid pattern */
+.contentWrapperAdmin::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ambient glow corners */
+.contentWrapperAdmin::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Sticky Footer Layout */
+.defaultLayout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainContent {
+    flex: 1;
+}
+
+/* ===== MOBILE RESPONSIVE LAYOUT ===== */
+@media (max-width: 991px) {
+    .contentWrapperAdmin {
+        margin-left: 0 !important;
+    }
+    .contentWrapperAdmin::before {
+        left: 0 !important;
+    }
+    .contentWrapperAdmin::after {
+        left: 0 !important;
+    }
 }

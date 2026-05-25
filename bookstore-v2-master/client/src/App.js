@@ -22,6 +22,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import GenreDetail from "./pages/GenreDetail";
 import Search from "./pages/Search";
+import Policy from "./pages/Policy";
 
 import Profile from "./pages/Account/Profile";
 import Order from "./pages/Account/Order";
@@ -44,7 +45,9 @@ import AccessDenied from "./pages/AccessDenied"
 import NotFound from "./pages/NotFound"
 
 import MoMoCallback from "./pages/Checkout/MoMoCallback";
+import VNPayCallback from "./pages/Checkout/VNPayCallback";
 
+import Chatbot from "./components/Chatbot/Chatbot";
 
 import userApi from "./api/userApi";
 import authApi from "./api/authApi";
@@ -102,6 +105,7 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
+      <Chatbot />
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<Home />} />
@@ -117,8 +121,10 @@ function App() {
           <Route path="/thanh-toan" element={<Checkout />} />
           <Route path="/san-pham/the-loai/:genre" element={<GenreDetail />} />
           <Route path="/tim-kiem" element={<Search />} />
+          <Route path="/chinh-sach/:slug" element={<Policy />} />
 
           <Route path="/thanhtoan/momo/callback" element={<MoMoCallback />}></Route>
+          <Route path="/thanhtoan/vnpay/callback" element={<VNPayCallback />}></Route>
 
         </Route>
 

@@ -97,6 +97,7 @@ function UpdateBook() {
       size: bookData.size ? bookData.size : "",
       price: bookData.price ? bookData.price : "",
       discount: bookData.discount ? bookData.discount : "",
+      stock: bookData.stock ? bookData.stock : 0,
       description: bookData.description ? bookData.description : "",
       author: bookData.author ? bookData.author : [],
       genre: bookData?.genre ? bookData.genre : [],
@@ -111,6 +112,10 @@ function UpdateBook() {
       price: Yup.number()
         .typeError("Vui lòng nhập giá hợp lệ!")
         .required("Không được bỏ trống trường này!"),
+      stock: Yup.number()
+        .typeError("Vui lòng nhập số lượng hợp lệ!")
+        .min(0, "Số lượng không được âm!")
+        .required("Không được bỏ trống trường này!"),
       image: updateImage && Yup.mixed().required("Không được bỏ trống trường này!")
       .test("FILE_SIZE", "Kích thước file quá lớn!", (value) => !value || (value && value.size < 1024 * 1024))
       .test("FILE_FORMAT", "File không đúng định dạng!", (value) => 
@@ -120,7 +125,7 @@ function UpdateBook() {
     onSubmit: async () => {
       console.log("kiem tra", formik.values);
       const { bookId, name, author, genre, publisher, description, 
-        year, pages, size, price, discount, image } = formik.values;
+        year, pages, size, price, discount, stock, image } = formik.values;
       try {
         if (image) {
           const formData = new FormData();
@@ -130,7 +135,7 @@ function UpdateBook() {
           const { secure_url, public_id } = resCloudinary.data
           if (secure_url && public_id) {
             await bookApi.update(id, { 
-              bookId, name, year, pages, size, price, discount, description,
+              bookId, name, year, pages, size, price, discount, description, stock,
               author: author._id,
               genre: genre._id,
               publisher: publisher._id,
@@ -140,7 +145,7 @@ function UpdateBook() {
           } 
         } else {
             await bookApi.update(id, { 
-              bookId, name, year, pages, size, price, discount, description,
+              bookId, name, year, pages, size, price, discount, description, stock,
               author: author._id,
               genre: genre._id,
               publisher: publisher._id,
@@ -388,6 +393,33 @@ function UpdateBook() {
                         className={styles.feedback}
                       >
                         {formik.errors.discount}
+                      </Form.Control.Feedback>
+                    )}
+                  </div>
+                </Col>
+                <Col xl={3}>
+                  <div className="form-group">
+                    <label className={styles.formLabel}>Tồn kho</label>
+                    <input
+                      type="number"
+                      min="0"
+                      name="stock"
+                      className={`form-control ${
+                        formik.errors.stock
+                          ? "is-invalid"
+                          : formik.values.stock !== undefined && "is-valid"
+                      }`}
+                      placeholder="Số lượng tồn kho"
+                      value={formik.values.stock}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                    />
+                    {formik.errors.stock && (
+                      <Form.Control.Feedback
+                        type="invalid"
+                        className={styles.feedback}
+                      >
+                        {formik.errors.stock}
                       </Form.Control.Feedback>
                     )}
                   </div>

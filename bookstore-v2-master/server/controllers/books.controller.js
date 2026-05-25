@@ -9,8 +9,10 @@ const bookController = {
             const limit = req.query.limit ? parseInt(req.query.limit) : 0
             const sort = req.query.sort ? req.query.sort : { createdAt: -1 }
             const { query } = req.query
+            let queryObj = !!query ? query : {}
 
-            const queryObj = !!query ? query : {}
+            if (queryObj.isFeatured === 'true') queryObj.isFeatured = true
+            if (queryObj.isFeatured === 'false') queryObj.isFeatured = false
 
             const key = `Book::${JSON.stringify({queryObj, page, limit, sort})}`
 
@@ -279,6 +281,41 @@ const bookController = {
             
         } catch (error) {
             res.status(400).json({
+                message: `Có lỗi xảy ra! ${error.message}`,
+                error: 1,
+            })
+        }
+    },
+    checkStock: async(req, res) => {
+        try {
+            const { items } = req.body // [{productId, quantity}]
+            if (!items || items.length === 0) {
+                return res.status(400).json({ message: 'Danh sách sản phẩm rỗng!', error: 1 })
+            }
+            const Book = require('../models/books.model')
+            const outOfStock = []
+            for (const item of items) {
+                const book = await Book.findById(item.productId)
+                if (!book) {
+                    outOfStock.push({ productId: item.productId, name: 'Sản phẩm không tồn tại', requested: item.quantity, available: 0 })
+                } else if (book.stock < item.quantity) {
+                    outOfStock.push({ productId: item.productId, name: book.name, requested: item.quantity, available: book.stock })
+                }
+            }
+            if (outOfStock.length > 0) {
+                return res.status(200).json({
+                    message: 'Một số sản phẩm không đủ số lượng tồn kho!',
+                    error: 1,
+                    data: outOfStock
+                })
+            }
+            return res.status(200).json({
+                message: 'success',
+                error: 0,
+                data: []
+            })
+        } catch (error) {
+            res.status(500).json({
                 message: `Có lỗi xảy ra! ${error.message}`,
                 error: 1,
             })

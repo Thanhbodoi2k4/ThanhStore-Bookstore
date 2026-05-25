@@ -12,7 +12,6 @@ import Search from "../Search";
 import authApi from "../../../api/authApi";
 import { logout } from '../../../redux/actions/auth';
 import { destroy } from '../../../redux/actions/cart';
-
 import styles from './Header.module.css';
 
 function Header() {
@@ -49,7 +48,7 @@ function Header() {
               </div>
               <NavBar />
 
-              <div className={`${styles.headerCenterRight} d-flex`}>
+              <div className={`${styles.headerCenterRight} d-flex align-items-center`}>
                 <div className={styles.headerIcon}>
                   {
                     currentUser.email && currentUser.fullName ? 

@@ -17,6 +17,14 @@ const orderApi = {
         const url = `orders/thanhtoan/momo/verify`
         return axiosClient.post(url, data)
     },
+    getPayUrlVNPay: (data) => {
+        const url = `orders/thanhtoan/vnpay`
+        return axiosClient.post(url, data)
+    },
+    verifyVNPay: (data) => {
+        const url = `orders/thanhtoan/vnpay/verify`
+        return axiosClient.post(url, data)
+    },
     create: (data) => {
         const url = `orders/`
         return axiosClient.post(url, data)

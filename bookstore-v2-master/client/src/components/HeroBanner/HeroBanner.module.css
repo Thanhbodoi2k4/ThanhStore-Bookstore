@@ -1,0 +1,712 @@
+/* ==========================================================
+   HERO BANNER — MYSTICAL DARK FANTASY THEME
+   "Nơi tri thức và ma thuật hội tụ"
+========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ====== Banner Container ====== */
+.heroBanner {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 560px;
+    max-height: 780px;
+    overflow: hidden;
+    background: #050508;
+    cursor: crosshair;
+}
+
+/* ====== Fog Layers ====== */
+.fogLayer {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(100, 80, 160, 0.05) 0%, transparent 50%);
+    z-index: 5;
+    pointer-events: none;
+    animation: fogDrift 20s ease-in-out infinite alternate;
+}
+
+.fogLayer2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(5, 5, 8, 0.95) 0%, rgba(5, 5, 8, 0.4) 40%, transparent 100%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+@keyframes fogDrift {
+    0% { transform: translateX(0) scale(1); }
+    100% { transform: translateX(3%) scale(1.02); }
+}
+
+/* ====== Vignette ====== */
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
+    z-index: 7;
+    pointer-events: none;
+}
+
+/* ====== Runic Border Decorations ====== */
+.runicBorderTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.5) 20%, rgba(201, 168, 76, 0.8) 50%, rgba(201, 168, 76, 0.5) 80%, transparent 100%);
+    z-index: 20;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1);
+}
+
+.runicBorderBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.3) 30%, rgba(201, 168, 76, 0.5) 50%, rgba(201, 168, 76, 0.3) 70%, transparent 100%);
+    z-index: 20;
+}
+
+/* ====== Particles ====== */
+.particlesContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.9) 0%, rgba(201, 168, 76, 0) 70%);
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--particle-opacity, 0.4);
+    }
+    50% {
+        transform: translateY(-50vh) translateX(20px) scale(0.8);
+    }
+    90% {
+        opacity: var(--particle-opacity, 0.4);
+    }
+    100% {
+        transform: translateY(-100vh) translateX(-10px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* ====== Slides ====== */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
+    z-index: 1;
+}
+
+.slideActive {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Parallax background */
+.slideBg {
+    position: absolute;
+    top: -4%;
+    left: -4%;
+    width: 108%;
+    height: 108%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+}
+
+.slideActive .slideBg {
+    animation: subtleZoom 12s ease-in-out alternate infinite;
+}
+
+@keyframes subtleZoom {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.12); }
+}
+
+/* Gradient overlays */
+.gradientOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, rgba(5, 5, 15, 0.92) 0%, rgba(5, 5, 15, 0.65) 35%, rgba(5, 5, 15, 0.3) 60%, rgba(5, 5, 15, 0.5) 100%);
+    z-index: 1;
+}
+
+.colorOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.4;
+    mix-blend-mode: screen;
+}
+
+/* ====== Slide Content Layout ====== */
+.slideContent {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+
+/* ====== Text Section ====== */
+.textSection {
+    flex: 1;
+    max-width: 620px;
+    z-index: 15;
+}
+
+/* Mystical decorative line */
+.mysticalLine {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+}
+
+.mysticalLine span {
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.6), transparent);
+}
+
+.mysticalLine span:last-child {
+    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.6));
+    width: 30px;
+}
+
+/* Subtitle */
+.subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 20px !important;
+    opacity: 0;
+    animation: fadeSlideUp 0.7s ease forwards;
+    animation-delay: 0.1s;
+}
+
+/* Title */
+.slideTitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px;
+    font-weight: 600;
+    font-style: italic;
+    color: #f0ebe3;
+    line-height: 1.1;
+    margin: 0 0 24px;
+    text-shadow: 
+        0 2px 30px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(201, 168, 76, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.titleLine {
+    display: block;
+    opacity: 0;
+    animation: titleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes titleReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) skewY(2deg);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+        filter: blur(0);
+    }
+}
+
+/* Description */
+.description {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(240, 235, 227, 0.55);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+    max-width: 440px;
+    opacity: 0;
+    animation: fadeSlideUp 0.7s ease forwards;
+    animation-delay: 0.55s;
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ====== CTA Group ====== */
+.ctaGroup {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    opacity: 0;
+    animation: fadeSlideUp 0.7s ease forwards;
+    animation-delay: 0.7s;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #050508 !important;
+    background: var(--accent) !important;
+    border-radius: 0;
+    text-decoration: none !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:
+        0 4px 20px var(--glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.ctaButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.ctaButton:hover::before {
+    left: 100%;
+}
+
+.ctaButton:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 40px var(--glow),
+        0 0 60px var(--glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.ctaBtnText {
+    position: relative;
+    z-index: 1;
+}
+
+.ctaArrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .ctaArrow {
+    transform: translateX(4px);
+}
+
+/* Slide Counter */
+.slideCounter {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+}
+
+.counterCurrent {
+    font-size: 26px;
+    font-weight: 700;
+    color: rgba(201, 168, 76, 0.8);
+    line-height: 1;
+}
+
+.counterDivider {
+    font-size: 14px;
+    color: rgba(240, 235, 227, 0.2);
+    margin: 0 2px;
+}
+
+.counterTotal {
+    font-size: 14px;
+    color: rgba(240, 235, 227, 0.3);
+}
+
+/* ====== Ornament Section (Right) ====== */
+.ornamentSection {
+    flex: 0 0 auto;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    z-index: 8;
+}
+
+/* Mystic Orb */
+.mysticOrb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+}
+
+.orbRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid var(--orb-color);
+    opacity: 0.15;
+    animation: orbSpin 30s linear infinite;
+}
+
+.orbRing::before {
+    content: '✦';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--orb-color);
+    opacity: 0.6;
+}
+
+.orbRing2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed var(--orb-color);
+    opacity: 0.08;
+    animation: orbSpin 20s linear infinite reverse;
+}
+
+@keyframes orbSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.orbCore {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: orbPulse 4s ease-in-out infinite;
+}
+
+.orbSymbol {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px var(--orb-glow));
+}
+
+@keyframes orbPulse {
+    0%, 100% { 
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+        filter: brightness(1.2);
+    }
+}
+
+/* Floating Runes */
+.runeFloat {
+    position: absolute;
+    top: var(--r-y);
+    left: var(--r-x);
+    font-size: 14px;
+    color: rgba(201, 168, 76, 0.3);
+    animation: runeFloat 6s ease-in-out infinite;
+    animation-delay: var(--r-delay);
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+@keyframes runeFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+    50% { transform: translateY(-15px) rotate(180deg); opacity: 0.5; }
+}
+
+/* ====== Navigation Arrows ====== */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(5, 5, 8, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    color: rgba(201, 168, 76, 0.6);
+    width: 52px;
+    height: 52px;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.35s ease;
+}
+
+.arrow:hover {
+    background: rgba(201, 168, 76, 0.12);
+    border-color: rgba(201, 168, 76, 0.35);
+    color: rgba(201, 168, 76, 0.9);
+    box-shadow: 0 0 25px rgba(201, 168, 76, 0.15);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.arrowLeft {
+    left: 24px;
+}
+
+.arrowRight {
+    right: 24px;
+}
+
+/* ====== Dots / Progress ====== */
+.dotsContainer {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.dot {
+    width: 28px;
+    height: 3px;
+    border: none;
+    background: rgba(201, 168, 76, 0.15);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.dot:hover {
+    background: rgba(201, 168, 76, 0.3);
+}
+
+.dotActive {
+    width: 56px;
+    background: rgba(201, 168, 76, 0.15);
+}
+
+.dotProgress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 0;
+    animation: progressFill 6s linear forwards;
+    box-shadow: 0 0 8px var(--dot-accent, rgba(201, 168, 76, 0.4));
+}
+
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 1200px) {
+    .ornamentSection {
+        width: 300px;
+        height: 300px;
+    }
+
+    .orbRing {
+        width: 220px;
+        height: 220px;
+    }
+
+    .orbRing2 {
+        width: 170px;
+        height: 170px;
+    }
+
+    .slideTitle {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 992px) {
+    .heroBanner {
+        height: 70vh;
+        min-height: 450px;
+    }
+
+    .slideContent {
+        padding: 0 50px;
+    }
+
+    .slideTitle {
+        font-size: 42px;
+    }
+
+    .ornamentSection {
+        width: 220px;
+        height: 220px;
+    }
+
+    .orbRing {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroBanner {
+        height: 65vh;
+        min-height: 400px;
+    }
+
+    .ornamentSection {
+        display: none;
+    }
+
+    .slideContent {
+        padding: 0 40px;
+    }
+
+    .textSection {
+        max-width: 100%;
+    }
+
+    .slideTitle {
+        font-size: 36px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .heroBanner {
+        height: 60vh;
+        min-height: 360px;
+    }
+
+    .slideContent {
+        padding: 0 24px;
+    }
+
+    .slideTitle {
+        font-size: 30px;
+    }
+
+    .ctaButton {
+        padding: 12px 24px;
+        font-size: 11px;
+    }
+
+    .arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .arrowLeft {
+        left: 12px;
+    }
+
+    .arrowRight {
+        right: 12px;
+    }
+
+    .mysticalLine {
+        display: none;
+    }
+}

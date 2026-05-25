@@ -1,19 +1,20 @@
 .header {
-    /* position: fixed; */
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 99;
-    background-color: white;
-    /* height: 135px; */
-    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
 }
 
 .headerRow {
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .navigateAdmin {
@@ -22,27 +23,31 @@
 }
 
 .header .bookstoreHighlight {
-    font-weight: 700;
-    color: #539E31;
-    font-size: 36px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    color: var(--primary-color, #2d6a4f);
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
 }
 
 .header .headerCenter {
     display: flex;
     align-items: center;
-    height: 80px;
+    height: 72px;
 }
 
 .headerCenter .headerCenterRight {
     margin-left: auto;
+    flex-shrink: 0;
 }
 
 .headerCenter .headerCenterRight svg {
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .headerCenter .headerCenterRight .headerIcon:not(:first-child) {
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .headerCenter .headerIcon {
@@ -51,6 +56,24 @@
 
 .headerIcon a {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.headerIcon a:hover {
+    background-color: rgba(45, 106, 79, 0.06);
+}
+
+.headerIcon p {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted, #6b7280);
+    letter-spacing: 0.3px;
 }
 
 .header .headerBottom {
@@ -63,22 +86,45 @@
 }
 
 .account .avatar {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
+    border: 2px solid var(--primary-light, #52b788);
+}
+
+.account > p {
+    font-size: 13px;
+    font-weight: 500;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .account .accountPopup {
     position: absolute;
     z-index: 100;
     text-align: left;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
-    width: 200px;
-    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     color: black;
     background-color: white;
     display: none;
+    border-radius: 12px;
+    overflow: visible; /* Changed from hidden to show pseudo-element */
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.account .accountPopup::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: transparent;
 }
 
 .account:hover .accountPopup {
@@ -86,28 +132,37 @@
 }
 
 .accountPopup .item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .accountPopup .popupLink {
     display: block;
-    padding: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
 }
 
 .accountPopup .popupLink:hover {
-    background-color: #fafafa;
+    background-color: #f0fdf4;
+    color: var(--primary-color, #2d6a4f);
 }
 
 .count {
     position: absolute;
-    top: -15px;
-    right: 10px;
-    background: orange;
+    top: 0px;
+    right: 2px;
+    background: var(--accent-color, #f77f00);
     color: white;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
 }
 
 .searchMobile {
@@ -115,7 +170,6 @@
 }
 
 @media (max-width: 576px) {
-
 
     .header {
         padding: 4px 0;
@@ -126,7 +180,7 @@
     }
 
     .header .headerCenter {
-        height: 60px;
+        height: 56px;
     }
 
     .headerCenter .headerCenterRight {
@@ -134,12 +188,12 @@
     }
 
     .header .bookstoreHighlight {
-        font-size: 30px;
-        margin-right: 10px !important;
+        font-size: 22px;
+        margin-right: 6px !important;
     }
 
     .headerCenter .headerIcon svg {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .headerCenter .headerIcon p {
@@ -155,10 +209,10 @@
     }
     
     .count {
-        top: -18px;
-        right: -5px;
-        width: 18px;
-        height: 18px;
-        font-size: 15px;
+        top: -4px;
+        right: -2px;
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
     }
 }

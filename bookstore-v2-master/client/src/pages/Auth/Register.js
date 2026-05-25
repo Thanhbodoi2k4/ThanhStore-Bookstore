@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import OAuth2Login from "react-simple-oauth2-login";
@@ -98,94 +98,95 @@ export default function Register() {
   });
 
   return (
-    <div className="main">
-      <Container>
-        <div className="auth-wrapper">
-          <form onSubmit={formik.handleSubmit}>
-              <h2 className="title text-center">ĐĂNG KÝ</h2>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input
-                  type="email"
-                  name="email"
-                  className={`form-control ${styles.formControl} ${formik.errors.email && formik.touched.email ? 'is-invalid' : ''}`}
-                  placeholder="Email"
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.errors.email && (
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.email}
-                  </Form.Control.Feedback>
-                )}
-              </div>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input
-                  type="text"
-                  id="fullname"
-                  name="fullName"
-                  className={`form-control ${styles.formControl} ${formik.errors.fullName && formik.touched.fullName ? 'is-invalid' : ''}`}
-                  placeholder="Họ và tên"
-                  value={formik.values.fullName}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                 {formik.errors.fullName && (
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.fullName}
-                  </Form.Control.Feedback>
-                )}
-              </div>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className={`form-control ${styles.formControl} ${formik.errors.password && formik.touched.password ? 'is-invalid' : ''}`}
-                  autoComplete="on"
-                  placeholder="Mật khẩu"
-                  value={formik.values.password}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.errors.password && (
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.password}
-                  </Form.Control.Feedback>
-                )}
-              </div>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  className={`form-control ${styles.formControl} ${formik.errors.confirmPassword && formik.touched.confirmPassword ? 'is-invalid' : ''}`}
-                  autoComplete="on"
-                  placeholder="Xác nhận mật khẩu"
-                  value={formik.values.confirmPassword}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.errors.confirmPassword && (
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.confirmPassword}
-                  </Form.Control.Feedback>
-                )}
-              </div>
-              <button type="submit" disabled={loading} className={`bookstore-btn ${styles.submitBtn}`}>
-                {loading ? "Đăng ký..." : "Đăng ký"}
-              </button>
-            </form>
-          <p style={{ color: "#ccc", textAlign: "center", marginBottom: 8 }}>HOẶC</p>
-          <div className="d-flex justify-content-between">
-            <div className={styles.boxLoginThirdParty}>
-              <img
-                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                alt=""
+    <div className={`main ${styles.loginPageWrapper}`} translate="no">
+      <div className={styles.authCard}>
+        <form onSubmit={formik.handleSubmit}>
+            <h2 className={styles.title}>Đăng ký</h2>
+            <div className={styles.formGroup}>
+              <input
+                type="email"
+                name="email"
+                className={`${styles.inputField} ${formik.errors.email && formik.touched.email ? 'is-invalid' : ''}`}
+                placeholder="Email..."
+                value={formik.values.email}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
-              <OAuth2Login
-                className="bookstore-btn"
-                buttonText="Login with Google"
+              {formik.errors.email && (
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.email}
+                </Form.Control.Feedback>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="text"
+                id="fullname"
+                name="fullName"
+                className={`${styles.inputField} ${formik.errors.fullName && formik.touched.fullName ? 'is-invalid' : ''}`}
+                placeholder="Họ và tên..."
+                value={formik.values.fullName}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+               {formik.errors.fullName && (
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.fullName}
+                </Form.Control.Feedback>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className={`${styles.inputField} ${formik.errors.password && formik.touched.password ? 'is-invalid' : ''}`}
+                autoComplete="on"
+                placeholder="Mật khẩu..."
+                value={formik.values.password}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.password && (
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.password}
+                </Form.Control.Feedback>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                className={`${styles.inputField} ${formik.errors.confirmPassword && formik.touched.confirmPassword ? 'is-invalid' : ''}`}
+                autoComplete="on"
+                placeholder="Xác nhận mật khẩu..."
+                value={formik.values.confirmPassword}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.confirmPassword && (
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.confirmPassword}
+                </Form.Control.Feedback>
+              )}
+            </div>
+            <button type="submit" disabled={loading} className={styles.submitBtn}>
+              {loading ? "Đang đăng ký..." : "Đăng ký"}
+            </button>
+        </form>
+        
+        <p className={styles.signupText}>
+          Bạn đã có tài khoản? <Link to="/dang-nhap" className={styles.signupLink}>Đăng nhập</Link>
+        </p>
+
+        <div className={styles.divider}>Hoặc đăng ký với</div>
+        <div className={styles.socialContainer}>
+          <div className={styles.socialBtn}>
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" />
+            <span>Google</span>
+            <OAuth2Login  
+                buttonText=""
                 authorizationUrl="https://accounts.google.com/o/oauth2/auth"
                 responseType="token"
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -193,29 +194,25 @@ export default function Register() {
                 scope="email profile"
                 onSuccess={responseSuccessGoogle}
                 onFailure={responseFailureGoogle}
-              ></OAuth2Login>
-            </div>
+            />
+          </div>
 
-            <div className={styles.boxLoginThirdParty}>
-              <img
-                src="https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_1280.png"
-                alt=""
-              />
-              <OAuth2Login
-                className="bookstore-btn"
-                buttonText="Login with Facebook"
-                authorizationUrl="https://www.facebook.com/dialog/oauth"
-                responseType="token"
-                clientId="990086591697823"
-                redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_FACEBOOK}
-                scope="public_profile"
-                onSuccess={responseSuccessFacebook}
-                onFailure={responseFailureFacebook}
-              ></OAuth2Login>
-            </div>
+          <div className={styles.socialBtn}>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" />
+            <span>Facebook</span>
+            <OAuth2Login
+              buttonText=""
+              authorizationUrl="https://www.facebook.com/dialog/oauth"
+              responseType="token"
+              clientId="990086591697823"
+              redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_FACEBOOK}
+              scope="public_profile"
+              onSuccess={responseSuccessFacebook}
+              onFailure={responseFailureFacebook}
+            />
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

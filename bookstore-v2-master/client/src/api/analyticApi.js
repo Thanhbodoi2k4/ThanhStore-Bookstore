@@ -21,6 +21,26 @@ const analyticApi = {
         const url = `analytics/product/bestseller`
         return axiosClient.get(url)
     },
+    getKPIs: () => {
+        const url = `analytics/kpis`
+        return axiosClient.get(url)
+    },
+    getOrderStatusDistribution: () => {
+        const url = `analytics/orders/status-distribution`
+        return axiosClient.get(url)
+    },
+    getRevenueByGenres: () => {
+        const url = `analytics/revenue/by-genres`
+        return axiosClient.get(url)
+    },
+    getTopSpendingCustomers: () => {
+        const url = `analytics/customers/top-spending`
+        return axiosClient.get(url)
+    },
+    getRevenueAndOrdersRange: ({ start, end }) => {
+        const url = `analytics/revenue/range`
+        return axiosClient.get(url, { params: { start, end } })
+    },
 }
 
 export default analyticApi

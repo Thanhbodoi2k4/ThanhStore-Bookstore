@@ -69,16 +69,24 @@ export default function ProductDetail() {
   }
 
   const incQuantity = () => {
+    if (quantity + 1 > bookData.stock) {
+      toast.info(`Chỉ còn ${bookData.stock} sản phẩm trong kho!`, {autoClose: 2000})
+      return;
+    }
     setQuantity(parseInt(quantity + 1))
   }
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     // /^[0-9]+$/.test(newQuantity)
     //sai khi them chu
     const newQuantity = parseInt(e.target.value)
     if(newQuantity){
-      setQuantity(newQuantity)
+      if (newQuantity > bookData.stock) {
+        toast.info(`Chỉ còn ${bookData.stock} sản phẩm trong kho!`, {autoClose: 2000})
+        setQuantity(bookData.stock)
+      } else {
+        setQuantity(newQuantity)
+      }
     }
     else {
       setQuantity('')
@@ -87,6 +95,17 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     if (currentUser && currentUser.userId) {
+      if (bookData.stock <= 0) {
+        toast.error('Sản phẩm đã hết hàng!', {autoClose: 2000})
+        return;
+      }
+      const cartItem = cartData.list.find(item => item.product._id === bookData._id)
+      const currentCartQuantity = cartItem ? cartItem.quantity : 0
+      if (quantity + currentCartQuantity > bookData.stock) {
+         toast.error(`Bạn đã có ${currentCartQuantity} sản phẩm trong giỏ. Không thể thêm vượt quá số lượng tồn kho!`, {autoClose: 2000})
+         return;
+      }
+
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
       let newPrice = price
       if (discount > 0) {
@@ -94,7 +113,7 @@ export default function ProductDetail() {
       }
       const action = addToCart({quantity, productId, name, imageUrl, slug, 
         price: newPrice, 
-        totalPriceItem: newPrice * quantity})
+        totalPriceItem: newPrice * quantity, stock: bookData.stock})
       dispatch(action)
       toast.success('Thêm sản phẩm vào giỏ hàng thành công!', {autoClose: 2000})
     } else {
@@ -104,6 +123,17 @@ export default function ProductDetail() {
 
   const handleBuyNow = () => {
     if (currentUser && currentUser.userId) {
+      if (bookData.stock <= 0) {
+        toast.error('Sản phẩm đã hết hàng!', {autoClose: 2000})
+        return;
+      }
+      const cartItem = cartData.list.find(item => item.product._id === bookData._id)
+      const currentCartQuantity = cartItem ? cartItem.quantity : 0
+      if (quantity + currentCartQuantity > bookData.stock) {
+         toast.error(`Bạn đã có ${currentCartQuantity} sản phẩm trong giỏ. Không thể mua vượt quá số lượng tồn kho!`, {autoClose: 2000})
+         return;
+      }
+
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
       let newPrice = price
       if (discount > 0) {
@@ -111,7 +141,7 @@ export default function ProductDetail() {
       }
       const action = addToCart({quantity, productId, name, imageUrl, slug, 
         price: newPrice, 
-        totalPriceItem: newPrice * quantity})
+        totalPriceItem: newPrice * quantity, stock: bookData.stock})
       dispatch(action)
       navigate({ pathname: "/gio-hang" });
     } else {
@@ -141,6 +171,12 @@ export default function ProductDetail() {
                       <span className={styles.oldPrice}>{format.formatPrice(bookData.price)}</span>
                     </p>)
                     : format.formatPrice(bookData.price)}
+                  </div>
+                  <div className={`d-flex ${styles.itemBriefing}`}>
+                    <div>Tình trạng: &nbsp;</div>
+                    <div className={styles.author} style={{ color: bookData?.stock > 0 ? 'green' : 'red' }}>
+                      {bookData?.stock > 0 ? `Còn hàng (${bookData?.stock} sản phẩm)` : 'Hết hàng'}
+                    </div>
                   </div>
                   <div className={`d-flex ${styles.itemBriefing}`}>
                     <div>Tác giả: &nbsp;</div>

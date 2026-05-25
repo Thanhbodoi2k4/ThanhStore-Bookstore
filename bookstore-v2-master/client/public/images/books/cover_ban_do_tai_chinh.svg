@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#064e3b"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="600" rx="18" fill="url(#bg)"/>
+  <path d="M76 356 L168 278 L244 338 L344 230" stroke="#fef3c7" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="76" cy="356" r="13" fill="#fef3c7"/><circle cx="168" cy="278" r="13" fill="#fef3c7"/><circle cx="244" cy="338" r="13" fill="#fef3c7"/><circle cx="344" cy="230" r="13" fill="#fef3c7"/>
+  <rect x="72" y="404" width="276" height="82" rx="18" fill="#052e2b" opacity=".55" stroke="#fef3c7"/>
+  <text x="210" y="456" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#fef3c7" font-weight="700">₫  ₫  ₫</text>
+  <text x="210" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#fde68a" font-weight="700">QUẢN LÝ TIỀN BẠC THÔNG MINH</text>
+  <text x="210" y="166" text-anchor="middle" font-family="Georgia, serif" font-size="48" fill="#ffffff" font-weight="700">BẢN ĐỒ</text>
+  <text x="210" y="230" text-anchor="middle" font-family="Georgia, serif" font-size="54" fill="#fde68a" font-weight="700">TÀI CHÍNH</text>
+  <text x="210" y="286" text-anchor="middle" font-family="Georgia, serif" font-size="42" fill="#ffffff" font-weight="700">CÁ NHÂN</text>
+  <text x="210" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#fef3c7">Nhiều tác giả</text>
+</svg>

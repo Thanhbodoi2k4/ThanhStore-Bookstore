@@ -1,34 +1,1220 @@
-* {
-    --primary-color: #539E31;
+/* ============================================ */
+/*  ThanhStore — VIP Pro Home Page Styles       */
+/*  Premium, luxurious design system            */
+/* ============================================ */
+
+:root {
+    --gold: #c4a35a;
+    --gold-light: #e8d5a0;
+    --green-dark: #1b4332;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --purple: #6c5ce7;
+    --blue: #0984e3;
+    --bg-cream: #faf8f5;
+    --bg-warm: #f5f0eb;
+    --text-dark: #1a1a2e;
+    --text-body: #4a4a5a;
+    --text-muted: #6b7280;
+}
+
+.pageWrapper {
+    overflow-x: hidden;
+}
+
+/* ============================================ */
+/*  Animations                                  */
+/* ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.animateIn {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animateSlideRight {
+    animation: fadeInRight 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.animateSlideLeft {
+    animation: fadeInLeft 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+/* ============================================ */
+/*  Section Headers — Premium Style             */
+/* ============================================ */
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.sectionTag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--gold);
+    background: linear-gradient(135deg, rgba(196,163,90,0.12), rgba(196,163,90,0.06));
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(196,163,90,0.2);
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.sectionSubtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 400;
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.titleDecor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    color: var(--gold);
+    font-size: 16px;
+}
+
+.titleDecor span {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.titleDecor span:last-child {
+    background: linear-gradient(to left, transparent, var(--gold));
+}
+
+/* ============================================ */
+/*  Features Strip                              */
+/* ============================================ */
+.featuresStrip {
+    background: white;
+    padding: 32px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.featuresGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.featureDivider {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, transparent, #e0e0e0, transparent);
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.featureIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--green-pale), #c8e6c9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--green);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.featureItem:hover .featureIcon {
+    transform: scale(1.08);
+    box-shadow: 0 4px 15px rgba(45, 106, 79, 0.2);
+}
+
+.featureItem h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.featureItem p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ============================================ */
+/*  Products Section                            */
+/* ============================================ */
+.productsSection {
+    padding: 100px 0 80px;
+    background: var(--bg-cream);
+}
+
+.productsContainer {
+    max-width: 1760px;
+    padding-left: 42px;
+    padding-right: 42px;
 }
 
 .booksList {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.04);
+    min-height: 780px;
 }
 
-.booksList .row {
-    --bs-gutter-x: 0
+.booksGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px 18px;
 }
 
-.title {
-    padding: 10px;
-    background-color: white;
+.bookGridItem {
+    min-width: 0;
 }
 
-.titleHeading {
+.viewAllWrapper {
+    text-align: center;
+    margin-top: 44px;
+}
+
+.viewAllBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(45, 106, 79, 0.3);
+    text-decoration: none !important;
+}
+
+.viewAllBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(45, 106, 79, 0.4);
+}
+
+.btnArrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.viewAllBtn:hover .btnArrow {
+    transform: translateX(4px);
+}
+
+/* ============================================ */
+/*  About Section — Luxurious                   */
+/* ============================================ */
+.aboutSection {
+    padding: 100px 0;
+    background: white;
     position: relative;
-    font-size: 20px;
-    width: fit-content;
+    overflow: hidden;
 }
 
-.titleHeading::after {
+.aboutBgDecor {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,163,90,0.05), transparent 70%);
+    pointer-events: none;
+}
+
+/* Store Showcase */
+.storeShowcase {
+    margin-bottom: 70px;
+    position: relative;
+}
+
+.showcaseImageWrapper {
+    position: relative;
+    width: 100%;
+    max-height: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.15),
+        0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.showcaseImage {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: transform 8s ease;
+}
+
+.showcaseImageWrapper:hover .showcaseImage {
+    transform: scale(1.05);
+}
+
+.showcaseOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 20px 28px;
+}
+
+.showcaseBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.showcaseBadge svg {
+    font-size: 16px;
+    color: var(--gold-light);
+}
+
+.showcaseCaption {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.showcaseCaption p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* About Main Content */
+.aboutMainRow {
+    margin-bottom: 60px;
+}
+
+.aboutContent {
+    padding-right: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aboutHeading {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-dark);
+    margin-bottom: 28px;
+}
+
+.highlight {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.aboutText {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-body);
+    margin-bottom: 16px !important;
+}
+
+.aboutQuote {
+    margin-top: 28px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f8f6f0, #f0ede4);
+    border-radius: 16px;
+    border-left: 4px solid var(--gold);
+    position: relative;
+}
+
+.aboutQuote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.7;
+}
+
+.aboutQuote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* About Cards */
+.aboutCardsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 100%;
+    align-content: center;
+}
+
+.aboutCard {
+    padding: 28px;
+    border-radius: 20px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.aboutCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    border-color: transparent;
+}
+
+.aboutCardIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.iconGreen {
+    background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+    color: var(--green);
+}
+
+.iconPurple {
+    background: linear-gradient(135deg, #e8dff5, #d5c8f0);
+    color: var(--purple);
+}
+
+.iconBlue {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: var(--blue);
+}
+
+.iconGold {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+}
+
+.aboutCard h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.aboutCard p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Stats Bar */
+.statsBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 48px 60px;
+    background: linear-gradient(135deg, var(--green-dark), #264653);
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(27, 67, 50, 0.25);
+}
+
+.statDivider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.statNumber {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.statDesc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+}
+
+/* ============================================ */
+/*  Testimonials Section                        */
+/* ============================================ */
+.testimonialSection {
+    padding: 100px 0;
+    background: var(--bg-cream);
+}
+
+.testimonialCard {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid #eee;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonialCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border-color: transparent;
+}
+
+.testimonialCardFeatured {
+    background: linear-gradient(135deg, var(--green-dark), #264653);
+    border: none;
+    box-shadow: 0 12px 40px rgba(27, 67, 50, 0.2);
+}
+
+.testimonialCardFeatured:hover {
+    box-shadow: 0 20px 56px rgba(27, 67, 50, 0.3);
+}
+
+.testimonialCardFeatured .testimonialText {
+    color: rgba(255,255,255,0.9);
+}
+
+.testimonialCardFeatured .testimonialAuthor h5 {
+    color: white;
+}
+
+.testimonialCardFeatured .testimonialAuthor span {
+    color: var(--gold-light);
+}
+
+.testimonialStars {
+    display: flex;
+    gap: 3px;
+    color: #f59e0b;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.testimonialText {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-body);
+    flex: 1;
+    margin-bottom: 24px;
+}
+
+.testimonialAuthor {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.testimonialCardFeatured .testimonialAuthor {
+    border-top-color: rgba(255,255,255,0.1);
+}
+
+.authorAvatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.testimonialCardFeatured .authorAvatar {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--text-dark);
+}
+
+.testimonialAuthor h5 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.testimonialAuthor span {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ============================================ */
+/*  Contact Section                             */
+/* ============================================ */
+.contactSection {
+    padding: 100px 0;
+    background: white;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: 100%;
+    justify-content: center;
+}
+
+.contactCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 26px;
+    background: #fafafa;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    transition: all 0.4s ease;
+}
+
+.contactCard:hover {
+    transform: translateX(8px);
+    border-color: transparent;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    background: white;
+}
+
+.contactIconWrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.contactIconWrapper.iconGreen {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+}
+
+.contactIconWrapper.iconBlue {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.contactIconWrapper.iconPurple {
+    background: linear-gradient(135deg, var(--purple), #a78bfa);
+}
+
+.contactIconWrapper.iconGold {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.contactCard h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--text-dark);
+}
+
+.contactCard p {
+    font-size: 14px;
+    color: var(--text-body);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.contactCard small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.mapWrapper {
+    height: 100%;
+    min-height: 440px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 
+        0 12px 40px rgba(0,0,0,0.1),
+        0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.mapWrapper iframe {
+    width: 100% !important;
+}
+
+/* ============================================ */
+/*  Newsletter Section                          */
+/* ============================================ */
+.newsletterSection {
+    padding: 80px 0;
+    background: var(--bg-cream);
+}
+
+.newsletterInner {
+    background: linear-gradient(135deg, var(--green-dark), #264653, #1b4332);
+    border-radius: 28px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(27, 67, 50, 0.25);
+}
+
+.newsletterInner::before {
     content: '';
     position: absolute;
-    bottom: -5px; 
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 20%, rgba(196,163,90,0.08), transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(82,183,136,0.06), transparent 50%);
+    pointer-events: none;
+}
+
+.newsletterContent {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.newsletterIcon {
+    font-size: 40px;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+}
+
+.newsletterContent h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.newsletterContent > p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+.newsletterForm {
+    display: flex;
+    gap: 0;
+    max-width: 440px;
+    margin: 0 auto 16px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.newsletterForm:focus-within {
+    border-color: var(--gold);
+}
+
+.newsletterForm input {
+    flex: 1;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.newsletterForm input::placeholder {
+    color: rgba(255,255,255,0.4);
+}
+
+.newsletterForm button {
+    padding: 16px 28px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--text-dark);
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.newsletterForm button:hover {
+    filter: brightness(1.1);
+}
+
+.newsletterContent small {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+}
+
+/* ============================================ */
+/*  Luxury Clock Banner                         */
+/* ============================================ */
+@keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.18; }
+    50% { transform: translateY(-18px) scale(1.08); opacity: 0.28; }
+}
+
+@keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes goldPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(196, 163, 90, 0); }
+    50% { box-shadow: 0 0 30px 8px rgba(196, 163, 90, 0.18); }
+}
+
+.clockBanner {
+    padding: 0;
+    background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 40%, #16213e 70%, #0f2027 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle top border glow */
+.clockBanner::before {
+    content: '';
+    position: absolute;
+    top: 0;
     left: 0;
-    display: block;
-    width: 100%;
+    right: 0;
     height: 2px;
-    background-color: var(--primary-color);
+    background: linear-gradient(90deg, transparent, var(--gold), #e8d5a0, var(--gold), transparent);
+}
+
+/* Subtle bottom border glow */
+.clockBanner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), #e8d5a0, var(--gold), transparent);
+}
+
+.clockBannerInner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+}
+
+/* Floating glowing orbs */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 163, 90, 0.35), transparent 70%);
+    animation: floatOrb 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Wings (side decorations) */
+.clockWing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 220px;
+}
+
+.wingLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 163, 90, 0.6));
+}
+
+.clockWing:last-child .wingLine {
+    background: linear-gradient(270deg, transparent, rgba(196, 163, 90, 0.6));
+}
+
+.wingDiamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(196, 163, 90, 0.6);
+    animation: goldPulse 3s ease-in-out infinite;
+}
+
+/* Center Clock Block */
+.clockCenterBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glowing ring behind the clock */
+.clockCenterBlock::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(196, 163, 90, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.clockLabel {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+    opacity: 0.9;
+}
+
+.clockSub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+    letter-spacing: 0.5px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Override clock colors for dark banner */
+.clockCenterBlock :global(.clockContainer) {
+    background: transparent !important;
+}
+
+.clockCenterBlock :global(.digit) {
+    color: #f0e6c8 !important;
+    font-size: 46px !important;
+    text-shadow: 0 0 24px rgba(196, 163, 90, 0.5);
+}
+
+.clockCenterBlock :global(.colon) {
+    color: var(--gold) !important;
+    font-size: 38px !important;
+}
+
+.clockCenterBlock :global(.secondsWrapper) {
+    height: 58px !important;
+    width: 60px !important;
+}
+
+.clockCenterBlock :global(.secondsAnimated) {
+    font-size: 46px !important;
+    color: rgba(196, 163, 90, 0.65) !important;
+}
+
+.clockCenterBlock :global(.ampm) {
+    color: rgba(196, 163, 90, 0.7) !important;
+    font-size: 16px !important;
+}
+
+@media (max-width: 768px) {
+    .clockBannerInner {
+        gap: 20px;
+        padding: 36px 20px;
+    }
+
+    .clockWing {
+        max-width: 80px;
+    }
+
+    .clockCenterBlock :global(.digit) {
+        font-size: 34px !important;
+    }
+
+    .clockCenterBlock :global(.secondsAnimated) {
+        font-size: 34px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .clockWing {
+        display: none;
+    }
+
+    .clockCenterBlock :global(.digit) {
+        font-size: 28px !important;
+    }
+}
+
+/* ============================================ */
+/*  Responsive                                  */
+/* ============================================ */
+@media (max-width: 1200px) {
+    .statsBar {
+        gap: 32px;
+        padding: 40px 40px;
+    }
+
+    .statNumber {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 992px) {
+    .featuresGrid {
+        gap: 24px;
+    }
+
+    .featureDivider {
+        display: none;
+    }
+
+    .aboutContent {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .sectionTitle {
+        font-size: 34px;
+    }
+
+    .statsBar {
+        flex-wrap: wrap;
+        gap: 24px;
+        padding: 36px 30px;
+    }
+
+    .statDivider {
+        display: none;
+    }
+
+    .showcaseImage {
+        height: 360px;
+    }
+
+    .productsContainer {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .booksGrid {
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .featuresGrid {
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+    }
+
+    .aboutCardsGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .productsSection,
+    .aboutSection,
+    .testimonialSection,
+    .contactSection {
+        padding: 60px 0;
+    }
+
+    .newsletterSection {
+        padding: 50px 0;
+    }
+
+    .mapWrapper {
+        min-height: 300px;
+        margin-top: 30px;
+    }
+
+    .sectionTitle {
+        font-size: 28px;
+    }
+
+    .aboutHeading {
+        font-size: 26px;
+    }
+
+    .showcaseImage {
+        height: 280px;
+    }
+
+    .statsBar {
+        gap: 20px;
+    }
+
+    .statNumber {
+        font-size: 28px;
+    }
+
+    .testimonialCard {
+        margin-bottom: 20px;
+    }
+
+    .newsletterInner {
+        padding: 40px 24px;
+    }
+
+    .newsletterForm {
+        flex-direction: column;
+        border-radius: 14px;
+    }
+
+    .newsletterForm button {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .productsContainer {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .booksList {
+        padding: 16px;
+        min-height: 0;
+    }
+
+    .booksGrid {
+        grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+        gap: 16px 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sectionTitle {
+        font-size: 24px;
+    }
+
+    .sectionTag {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .aboutHeading {
+        font-size: 22px;
+    }
+
+    .aboutCardsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcaseImage {
+        height: 220px;
+    }
+
+    .statsBar {
+        gap: 16px;
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .statNumber {
+        font-size: 24px;
+    }
 }

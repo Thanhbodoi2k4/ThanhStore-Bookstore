@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+.clockContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  background: transparent;
+}
+
+.timeWrapper {
+  display: flex;
+  align-items: center;   /* center thay vì baseline để đồng đều */
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums slashed-zero;
+  line-height: 1;
+}
+
+/* ---- Light theme (default) ---- */
+.digit {
+  font-size: 28px;
+  font-weight: 700;
+  color: #34495e;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.colon {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 4px;
+  color: #7f8c8d;
+  animation: blink 2s infinite;
+  line-height: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* secondsWrapper: clip overflow để slide animation không tràn,
+   height phải khớp với line-height của digit */
+.secondsWrapper {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.1em;         /* khớp với font-size của .digit */
+  width: 2ch;            /* vừa đủ 2 ký tự số */
+  vertical-align: middle;
+  margin-left: 2px;
+  position: relative;
+}
+
+.secondsAnimated {
+  display: block;
+  font-size: inherit;    /* kế thừa font-size từ wrapper */
+  font-weight: 500;
+  color: #7f8c8d;
+  animation: slideUpFadeIn 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    transform: translateY(-80%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.ampm {
+  font-size: 0.5em;
+  font-weight: 700;
+  margin-left: 8px;
+  color: #95a5a6;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+/* ---- Dark / Gold Luxury theme ---- */
+.digitDark {
+  color: #f0e6c8 !important;
+  font-size: 46px !important;
+  text-shadow: 0 0 24px rgba(196, 163, 90, 0.45);
+}
+
+.colonDark {
+  color: #c4a35a !important;
+  font-size: 38px !important;
+}
+
+.secondsWrapperDark {
+  font-size: 46px !important;   /* wrapper kế thừa font-size, digit con inherit */
+}
+
+.secondsAnimatedDark {
+  color: rgba(196, 163, 90, 0.6) !important;
+}
+
+.ampmDark {
+  color: rgba(196, 163, 90, 0.65) !important;
+}

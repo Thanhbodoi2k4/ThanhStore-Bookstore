@@ -1,0 +1,142 @@
+.policyPage {
+  background: #f8f9fa;
+  min-height: 80vh;
+  padding-bottom: 60px;
+}
+
+.header {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: white;
+  padding: 60px 0;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(196,163,90,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.backLink {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.backLink:hover {
+  color: white;
+}
+
+.titleBlock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  font-size: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.titleBlock h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.mainContent {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1b4332;
+  margin: 30px 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.content h3:first-child {
+  margin-top: 0;
+}
+
+.content p {
+  color: #4a4a5a;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.content li {
+  color: #4a4a5a;
+  margin-bottom: 10px;
+  position: relative;
+  list-style: none;
+  padding-left: 10px;
+}
+
+.content li::before {
+  content: '✦';
+  position: absolute;
+  left: -15px;
+  color: #c4a35a;
+  font-size: 12px;
+}
+
+.footerNote {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.footerNote p {
+  font-style: italic;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .titleBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .titleBlock h1 {
+    font-size: 28px;
+  }
+  
+  .mainContent {
+    padding: 25px;
+  }
+}

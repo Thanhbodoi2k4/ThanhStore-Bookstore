@@ -13,10 +13,10 @@ const methodEnum = {
         code: 1,
         text: "Ví momo"
     },
-    paypal: {
+    vnpay: {
         code: 2,
-        text: "Paypal"
-    },
+        text: "Ví VNPay"
+    }
 }
 
 const orderStatusEnum = {

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset=".55" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="600" rx="18" fill="url(#bg)"/>
+  <g fill="none" stroke="#67e8f9" stroke-width="2" opacity=".55">
+    <path d="M44 105 H166 V152 H245"/>
+    <path d="M376 130 H282 V214 H180"/>
+    <path d="M56 474 H165 V405 H294 V452 H370"/>
+  </g>
+  <rect x="76" y="356" width="268" height="138" rx="16" fill="#020617" opacity=".72" stroke="#93c5fd"/>
+  <text x="110" y="410" font-family="Consolas, monospace" font-size="25" fill="#a7f3d0">&lt;html&gt;</text>
+  <text x="110" y="448" font-family="Consolas, monospace" font-size="25" fill="#bfdbfe">React()</text>
+  <text x="110" y="482" font-family="Consolas, monospace" font-size="20" fill="#fef3c7">CSS + JS</text>
+  <text x="210" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#dbeafe" font-weight="700">CẨM NANG CHO NGƯỜI MỚI</text>
+  <text x="210" y="168" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#ffffff" font-weight="700">LẬP TRÌNH</text>
+  <text x="210" y="232" text-anchor="middle" font-family="Georgia, serif" font-size="82" fill="#fef08a" font-weight="700">WEB</text>
+  <text x="210" y="285" text-anchor="middle" font-family="Georgia, serif" font-size="35" fill="#ffffff" font-weight="700">TỪ CON SỐ 0</text>
+  <text x="210" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#dbeafe">ThanhStore Biên soạn</text>
+</svg>

@@ -7,6 +7,22 @@ const voucherService = require('../services/vouchers.service')
 const { paymentStatusEnum, methodEnum, orderStatusEnum } = require('../utils/enum')
 const { orderSuccess } = require('../utils/sendMail')
 
+function sortObject(obj) {
+    let sorted = {};
+    let str = [];
+    let key;
+    for (key in obj){
+        if (obj.hasOwnProperty(key)) {
+        str.push(encodeURIComponent(key));
+        }
+    }
+    str.sort();
+    for (key = 0; key < str.length; key++) {
+        sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
+    }
+    return sorted;
+}
+
 const orderController = {
     getAll: async(req, res) => {
         try {
@@ -163,10 +179,113 @@ const orderController = {
             })
         }
     },
+    getPayUrlVNPay: async (req, res) => {
+        try {
+            const { amount, paymentId } = req.body;
+            
+            const date = new Date();
+            const pad = (n) => (n < 10 ? '0' + n : n);
+            const createDate = date.getFullYear().toString() + pad(date.getMonth() + 1) + pad(date.getDate()) + pad(date.getHours()) + pad(date.getMinutes()) + pad(date.getSeconds());
+            
+            const ipAddr = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress || '127.0.0.1';
+            
+            const tmnCode = "CGXZLS0Z";
+            const secretKey = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN";
+            let vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+            const returnUrl = `${req.get('origin')}/thanhtoan/vnpay/callback`;
+            const orderId = paymentId;
+            const bankCode = '';
+            
+            const locale = 'vn';
+            const currCode = 'VND';
+            let vnp_Params = {};
+            vnp_Params['vnp_Version'] = '2.1.0';
+            vnp_Params['vnp_Command'] = 'pay';
+            vnp_Params['vnp_TmnCode'] = tmnCode;
+            vnp_Params['vnp_Locale'] = locale;
+            vnp_Params['vnp_CurrCode'] = currCode;
+            vnp_Params['vnp_TxnRef'] = orderId;
+            vnp_Params['vnp_OrderInfo'] = 'Thanh toan don hang ' + orderId;
+            vnp_Params['vnp_OrderType'] = 'other';
+            vnp_Params['vnp_Amount'] = amount * 100;
+            vnp_Params['vnp_ReturnUrl'] = returnUrl;
+            vnp_Params['vnp_IpAddr'] = ipAddr;
+            vnp_Params['vnp_CreateDate'] = createDate;
+            if(bankCode !== null && bankCode !== ''){
+                vnp_Params['vnp_BankCode'] = bankCode;
+            }
+
+            vnp_Params = sortObject(vnp_Params);
+
+            const signData = Object.keys(vnp_Params).map(key => key + '=' + vnp_Params[key]).join('&');
+            const hmac = crypto.createHmac("sha512", secretKey);
+            const signed = hmac.update(Buffer.from(signData, 'utf-8')).digest("hex"); 
+            vnp_Params['vnp_SecureHash'] = signed;
+            vnpUrl += '?' + Object.keys(vnp_Params).map(key => key + '=' + vnp_Params[key]).join('&');
+
+            res.status(200).json({ message: "Ok", payUrl: vnpUrl });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 1, message: error.message });
+        }
+    },
+    verifyVNPay: async (req, res) => {
+        try {
+            let vnp_Params = req.body;
+            let secureHash = vnp_Params['vnp_SecureHash'];
+
+            delete vnp_Params['vnp_SecureHash'];
+            delete vnp_Params['vnp_SecureHashType'];
+
+            vnp_Params = sortObject(vnp_Params);
+
+            const secretKey = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN";
+            const signData = Object.keys(vnp_Params).map(key => key + '=' + vnp_Params[key]).join('&');
+            const hmac = crypto.createHmac("sha512", secretKey);
+            const signed = hmac.update(Buffer.from(signData, 'utf-8')).digest("hex");     
+
+            if(secureHash === signed){
+                const paymentId = vnp_Params['vnp_TxnRef'];
+                const rspCode = vnp_Params['vnp_ResponseCode'];
+                if (rspCode === '00') {
+                    await orderService.updatePaymentStatusByPaymentId(paymentId, { paymentStatus: paymentStatusEnum?.Paid, method: methodEnum?.vnpay });
+                    return res.status(200).json({ message: "Ok", code: '00' });
+                } else {
+                    await orderService.updatePaymentStatusByPaymentId(paymentId, { paymentStatus: paymentStatusEnum?.Failed, method: methodEnum?.vnpay });
+                    return res.status(200).json({ message: "Giao dịch thất bại", code: rspCode });
+                }
+            } else{
+                res.status(200).json({ message: "Checksum failed", code: '97' });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: `Có lỗi xảy ra! ${error.message}`, error: 1 });
+        }
+    },
     create: async(req, res) => {
         try {
             const { userId, products, delivery, voucherId, cost, method, paymentId } = req.body
             if (products.length <= 0) return res.status(400).json({error: 1, message: "Giỏ hàng rỗng. Không thể thực hiện!!"}) 
+
+            // Kiểm tra tồn kho trước khi tạo đơn hàng
+            const Book = require('../models/books.model')
+            const outOfStock = []
+            for (const item of products) {
+                const book = await Book.findById(item.product)
+                if (!book) {
+                    outOfStock.push({ name: item.name || 'Sản phẩm không tồn tại', requested: item.quantity, available: 0 })
+                } else if (book.stock < item.quantity) {
+                    outOfStock.push({ name: book.name, requested: item.quantity, available: book.stock })
+                }
+            }
+            if (outOfStock.length > 0) {
+                const messages = outOfStock.map(item => `"${item.name}" chỉ còn ${item.available} cuốn`).join(', ')
+                return res.status(400).json({
+                    error: 1,
+                    message: `Không đủ số lượng tồn kho: ${messages}`,
+                    outOfStock
+                })
+            }
 
             const voucher = await voucherService.getById(voucherId)
             if (voucher) {
@@ -190,7 +309,13 @@ const orderController = {
                 userId, products, delivery, voucherId, cost, method, paymentId
             })
 
+            // Trừ tồn kho sau khi tạo đơn hàng thành công
             if (data) {
+                for (const item of products) {
+                    await Book.findByIdAndUpdate(item.product, {
+                        $inc: { stock: -item.quantity }
+                    })
+                }
                 await orderSuccess({ clientURL: req.get('origin'), delivery, products, method, cost })
             }
 

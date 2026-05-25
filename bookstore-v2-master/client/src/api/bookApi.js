@@ -36,6 +36,10 @@ const bookApi = {
     delete: (id) => {
         const url = `books/${id}`
         return axiosClient.delete(url)
+    },
+    checkStock: (items) => {
+        const url = `books/check-stock`
+        return axiosClient.post(url, { items })
     }
 
 }

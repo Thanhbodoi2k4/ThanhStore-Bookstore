@@ -1,4 +1,4 @@
-import { Container, Modal, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OAuth2Login from 'react-simple-oauth2-login';
 
@@ -84,13 +84,18 @@ function Login() {
       
     } catch (error) {
       setLoading(false)
-      console.log(error.response.data.error)
-      if (error.response.data.error === 2) {
-        setShowModal(true)
+      if (error.response && error.response.data) {
+        console.log(error.response.data.error)
+        if (error.response.data.error === 2) {
+          setShowModal(true)
+        } else {
+          alert("Lỗi đăng nhập: " + (error.response.data.message || "Tài khoản hoặc mật khẩu không đúng"));
+        }
+      } else {
+        console.log("Network error:", error)
+        alert("Không thể kết nối đến máy chủ. Vui lòng kiểm tra lại đường truyền hoặc server!");
       }
-      console.log(error)
     }
-   
   }
 
   const handleSendEmail = async () => {
@@ -106,8 +111,7 @@ function Login() {
   }
   
   return (
-    <div className="main">
-      <div className={styles.loginPage}>
+    <div className={`main ${styles.loginPageWrapper}`} translate="no">
       <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Thông báo</Modal.Title>
@@ -122,63 +126,63 @@ function Login() {
           </Button>
         </Modal.Footer>
       </Modal>
-        <Container>
-          <div className="auth-wrapper">
-            <h2 className="title text-center">ĐĂNG NHẬP</h2>
-            <form className="form-login" onSubmit={handleLogin}>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input required type="text" name="email" className="form-control" placeholder="Email..."
-                  value={email} onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className={`form-group ${styles.formGroup}`}>
-                <input required type="password" name="password" className="form-control" autoComplete="on" placeholder="Mật khẩu..." 
-                  value={password} onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <Link className={styles.forgotPassword} to="/quen-mat-khau">Quên mật khẩu?</Link>
-              <button className={`bookstore-btn ${styles.submitBtn}`} disabled={loading}>{loading ? "Đăng nhập..." : "Đăng nhập"}</button>
-            </form>
-            <p style={{textAlign: 'center'}}>
-              Bạn chưa có tài khoản? <Link to="/dang-ki" style={{color: '#0074da'}}>Đăng ký tại đây</Link>
-            </p>
-            <p style={{color: '#ccc', textAlign: 'center'}}>HOẶC</p>
-          
-            <div className="d-flex justify-content-between">
-              <div className={styles.boxLoginThirdParty}>
-                {/* Đã sửa link ảnh Google bằng link chính chủ Firebase/Google */}
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" />
-                <OAuth2Login  
-                    className="bookstore-btn"
-                    buttonText="Login with Google"
-                    authorizationUrl="https://accounts.google.com/o/oauth2/auth"
-                    responseType="token"
-                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                    redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_GOOGLE}
-                    scope="email profile"
-                    onSuccess={responseSuccessGoogle}
-                    onFailure={responseFailureGoogle}
-                ></OAuth2Login>
-              </div>
 
-              <div className={styles.boxLoginThirdParty}>
-                {/* Đã sửa link ảnh Facebook thành dạng SVG không bao giờ hỏng */}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" />
-                <OAuth2Login
-                  className="bookstore-btn"
-                  buttonText="Login with Facebook"
-                  authorizationUrl="https://www.facebook.com/dialog/oauth"
-                  responseType="token"
-                  clientId="990086591697823"
-                  redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_FACEBOOK}
-                  scope="public_profile"
-                  onSuccess={responseSuccessFacebook}
-                  onFailure={responseFailureFacebook}
-                ></OAuth2Login>
-              </div>
-            </div>
+      <div className={styles.authCard}>
+        <h2 className={styles.title}>Đăng nhập</h2>
+        <form onSubmit={handleLogin}>
+          <div className={styles.formGroup}>
+            <input required type="text" name="email" className={styles.inputField} placeholder="Email..."
+              value={email} onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-        </Container>
+          <div className={styles.formGroup}>
+            <input required type="password" name="password" className={styles.inputField} autoComplete="on" placeholder="Mật khẩu..." 
+              value={password} onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Link className={styles.forgotPassword} to="/quen-mat-khau">Quên mật khẩu?</Link>
+          <button className={styles.submitBtn} disabled={loading}>
+            {loading ? "Đang xử lý..." : "Đăng nhập"}
+          </button>
+        </form>
+
+        <p className={styles.signupText}>
+          Bạn chưa có tài khoản? <Link to="/dang-ki" className={styles.signupLink}>Đăng ký ngay</Link>
+        </p>
+
+        <div className={styles.divider}>Hoặc đăng nhập với</div>
+      
+        <div className={styles.socialContainer}>
+          <div className={styles.socialBtn}>
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" />
+            <span>Google</span>
+            <OAuth2Login  
+                buttonText=""
+                authorizationUrl="https://accounts.google.com/o/oauth2/auth"
+                responseType="token"
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_GOOGLE}
+                scope="email profile"
+                onSuccess={responseSuccessGoogle}
+                onFailure={responseFailureGoogle}
+            />
+          </div>
+
+          <div className={styles.socialBtn}>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" />
+            <span>Facebook</span>
+            <OAuth2Login
+              buttonText=""
+              authorizationUrl="https://www.facebook.com/dialog/oauth"
+              responseType="token"
+              clientId="990086591697823"
+              redirectUri={process.env.REACT_APP_REDIRECT_LOGIN_FACEBOOK}
+              scope="public_profile"
+              onSuccess={responseSuccessFacebook}
+              onFailure={responseFailureFacebook}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

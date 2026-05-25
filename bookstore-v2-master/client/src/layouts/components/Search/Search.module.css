@@ -1,41 +1,53 @@
 .searchWrapper {
     position: relative;
-    margin-right: 50px;
+    margin-right: 24px;
 }
 
  .formControl {
-    width: 400px;
-    border: 1px solid #E1E1E1;
+    width: 360px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px 56px 10px 16px;
+    font-size: 14px;
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
 }
 
-
 .formControl:focus {
-    border-color: #80bdff;
-  }
+    border-color: var(--primary-light, #52b788);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.12);
+}
 
 .searchBtn {
     position: absolute;
     right: 0;
     color: white;
-    background-color: #80C063;;
+    background-color: var(--primary-color, #2d6a4f);
     line-height: normal;
-    width: 50px;
+    width: 44px;
     height: 100%;
+    border-radius: 0 12px 12px 0;
+    transition: background-color 0.2s ease;
+}
+
+.searchBtn:hover {
+    background-color: var(--primary-dark, #1b4332);
 }
 
 .resetKey {
     position: absolute;
-    right: 50px;
-    color: #555;
+    right: 46px;
+    color: #9ca3af;
     line-height: normal;
-    width: 50px;
+    width: 36px;
     height: 100%;
     display: none;
 }
 
 .loading {
     position: absolute;
-    right: 60px;
+    right: 54px;
     display: grid;
     place-items: center;
     height: 100%;
@@ -49,22 +61,35 @@
     position: absolute;
     background-color: white;
     z-index: 1000;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     width: 100%;
+    border-radius: 12px;
+    margin-top: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
 }
 
 
 .resultItem {
     display: flex;
     align-items: center;
-    padding: 4px 6px;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3f4f6;
     font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.resultItem:hover {
+    background-color: #f0fdf4;
+}
+
+.resultItem:last-child {
+    border-bottom: none;
 }
 
 .img {
     flex-shrink: 0;
-    width: 100px;
+    width: 60px;
 }
 
 .name {
@@ -78,35 +103,35 @@
 }
 
 .resultItem img {
-    height: 80px;
+    height: 70px;
     object-fit: contain;
+    border-radius: 4px;
 }
 
 .resultItem .bookInfo {
-    margin-left: 10px;
+    margin-left: 12px;
 }
 
 @media (max-width: 576px) {
 
     .searchWrapper {
         width: 100%;
+        margin-right: 0;
     }
 
     .formControl {
         width: 100%;
-        padding: 6px 10px;
+        padding: 8px 44px 8px 12px;
         font-size: 13px;
     }
 
     .searchBtn {
-        width: 40px;
-        line-height: 40px;
+        width: 38px;
     }
     
     .resetKey {
-        right: 40px;
-        width: 40px;
-        line-height: 40px;
+        right: 38px;
+        width: 36px;
     }
     
  }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateQuantity, removeItem } from "../../../redux/actions/cart";
+import { toast } from 'react-toastify';
 
 import { FaTrashAlt } from "react-icons/fa"
 
@@ -15,6 +16,10 @@ export default function CartItem(props) {
   const [totalPriceItem, setTotalPriceItem] = useState(props.totalPriceItem);
 
   function increaseQuantity() {
+    if (quantity + 1 > props.stock) {
+      toast.info(`Chỉ còn ${props.stock} sản phẩm trong kho!`, {autoClose: 2000})
+      return;
+    }
     setQuantity((preValue) => preValue + 1);
     setTotalPriceItem(props.price * (quantity + 1));
   }
@@ -29,8 +34,14 @@ export default function CartItem(props) {
   function handleChange(event) {
     const value =
       parseInt(event.target.value) > 0 ? parseInt(event.target.value) : 1;
-    setQuantity(value);
-    setTotalPriceItem(props.price * value);
+    if (value > props.stock) {
+      toast.info(`Chỉ còn ${props.stock} sản phẩm trong kho!`, {autoClose: 2000})
+      setQuantity(props.stock);
+      setTotalPriceItem(props.price * props.stock);
+    } else {
+      setQuantity(value);
+      setTotalPriceItem(props.price * value);
+    }
   }
 
   const handleRemoveItem = (productId) => {

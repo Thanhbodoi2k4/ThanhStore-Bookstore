@@ -10,6 +10,8 @@ router.get('/:id', verifyToken, checkRole([RoleEnum.Staff, RoleEnum.Admin]), ord
 
 router.post("/thanhtoan/momo/verify", orderController.verifyMoMo)
 router.post('/thanhtoan/momo', orderController.getPayUrlMoMo)
+router.post("/thanhtoan/vnpay/verify", orderController.verifyVNPay)
+router.post('/thanhtoan/vnpay', orderController.getPayUrlVNPay)
 router.post('/', orderController.create)
 
 router.put('/:id/order-status', verifyToken, checkRole([RoleEnum.Staff, RoleEnum.Admin]), orderController.updateOrderStatus)

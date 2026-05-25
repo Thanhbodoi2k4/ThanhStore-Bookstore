@@ -99,6 +99,9 @@ function BookList() {
                 >
                   <FaSearch />
               </Button>
+              <Link to="/admin/book/add" className="btn btn-success" style={{marginLeft: '15px'}}>
+                + Thêm sách mới
+              </Link>
             </div>
           </div>
           <div className="admin-content-body">
@@ -111,6 +114,7 @@ function BookList() {
                   <th>Xuất bản</th>
                   <th>Giá</th>
                   <th>Khuyến mãi (%)</th>
+                  <th>Tồn kho</th>
                   <th colSpan="2">Hành động</th>
                 </tr>
               </thead>
@@ -140,6 +144,7 @@ function BookList() {
                         </td>
                         <td className="price">{format.formatPrice(item.price)}</td>
                         <td>{item.discount}</td>
+                        <td>{item.stock || 0}</td>
                         <td>
                           <Link
                             to={`/admin/book/update/${item._id}`}

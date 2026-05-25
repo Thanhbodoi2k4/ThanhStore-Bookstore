@@ -1,56 +1,143 @@
 .footer {
-    background-color: #252932;
-    height:fit-content;
-    padding: 20px 0;
+    background-color: #1a1a2e;
+    padding: 60px 0 0 0;
+}
+
+.footerMain {
+    padding-bottom: 40px;
 }
 
 .footer .footerGroup p,
 .footer .footerGroup a {
-    color: #ccc;
-    font-weight: 300;
-    margin-bottom: 6px;
+    color: #a0aec0;
+    font-weight: 400;
+    margin-bottom: 8px;
     display: block;
+    font-size: 14px;
+    line-height: 1.7;
+    transition: color 0.2s ease;
+}
+
+.footer .footerGroup a:hover {
+    color: #52b788;
 }
 
 .footer .bookstoreHighlight {
-    font-weight: 700;
-    color: #539E31;
-    margin-top: -10px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    color: #52b788;
+    font-size: 28px;
+    margin-bottom: 16px;
+    margin-top: 0;
 }
 
 .footer .footerGroup .title {
-    font-weight: 600;
-    font-size: 17px;
+    font-weight: 700;
+    font-size: 14px;
     color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px !important;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer .footerGroup .title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #52b788;
+    border-radius: 2px;
 }
 
 .footer .formGroup {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+}
+
+.footer .formGroup input {
+    background-color: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 10px;
+    padding: 12px 50px 12px 16px;
+    font-size: 14px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.footer .formGroup input::placeholder {
+    color: #6b7280;
+}
+
+.footer .formGroup input:focus {
+    outline: none;
+    border-color: #52b788;
+    background-color: rgba(255,255,255,0.12);
 }
 
 .footer .subscribeBtn {
     position: absolute;
     right: 8px;
-    color: #0FA958;
+    color: #52b788;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 18px;
+    transition: color 0.2s ease;
+}
+
+.footer .subscribeBtn:hover {
+    color: #6ee7b7;
 }
 
 .footer .boxSocial .bookstoreBtn {
-    color: #A4A4A4;
-    font-size: 28px;
-    margin-right: 12px;
+    color: #6b7280;
+    font-size: 24px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+}
+
+.footer .boxSocial .bookstoreBtn:hover {
+    color: white;
+    background: rgba(82, 183, 136, 0.2);
+}
+
+/* Footer Bottom */
+.footerBottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footerBottom p {
+    color: #4b5563 !important;
+    font-size: 13px;
+    margin: 0;
+}
+
+.footerBottom a {
+    color: #52b788 !important;
 }
 
 @media (max-width: 576px) {
 
     .footer {
         font-size: 14px;
+        padding: 40px 0 0 0;
     }
 
     .footerGroup {
-        margin-top: 10px;
+        margin-top: 24px;
     }
 
     .cateList {

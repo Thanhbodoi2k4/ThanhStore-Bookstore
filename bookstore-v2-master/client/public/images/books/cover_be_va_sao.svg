@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e1b4b"/>
+      <stop offset=".65" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="600" rx="18" fill="url(#bg)"/>
+  <g fill="#fff7ed">
+    <circle cx="70" cy="90" r="3"/><circle cx="116" cy="145" r="4"/><circle cx="330" cy="110" r="3"/><circle cx="360" cy="220" r="5"/><circle cx="55" cy="265" r="4"/>
+  </g>
+  <path d="M210 120 l13 39 h41 l-33 24 l13 39 l-34-24 l-33 24 l13-39 l-33-24 h41z" fill="#fde68a"/>
+  <circle cx="120" cy="390" r="46" fill="#fed7aa"/>
+  <path d="M94 438 h52 l38 82 h-128z" fill="#ef4444"/>
+  <path d="M254 370 C300 320 346 316 370 346 C338 360 310 392 292 438 Z" fill="#93c5fd"/>
+  <path d="M0 505 C88 460 156 500 236 468 C310 438 366 454 420 426 L420 600 L0 600 Z" fill="#22c55e"/>
+  <text x="210" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#bfdbfe" font-weight="700">SÁCH THIẾU NHI KHÁM PHÁ</text>
+  <text x="210" y="265" text-anchor="middle" font-family="Georgia, serif" font-size="43" fill="#ffffff" font-weight="700">EM BÉ VÀ</text>
+  <text x="210" y="322" text-anchor="middle" font-family="Georgia, serif" font-size="50" fill="#fde68a" font-weight="700">BẦU TRỜI SAO</text>
+  <text x="210" y="552" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e1b4b">ThanhStore Biên soạn</text>
+</svg>

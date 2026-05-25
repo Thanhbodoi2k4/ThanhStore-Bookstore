@@ -59,23 +59,23 @@ const bookService = {
     },
     create: async(body) => {
         const { bookId, name, year, genre, author, publisher, description,
-            pages, size, price, discount, imageUrl, publicId } = body
+            pages, size, price, discount, imageUrl, publicId, stock } = body
         const newBook = new Book({bookId, name, year, genre, description,
-            author, publisher, pages, size, price, discount, imageUrl, publicId})
+            author, publisher, pages, size, price, discount, imageUrl, publicId, stock})
         return await newBook.save()
     },
     updateById: async(id, body) => {
         const { name, year, genre, author, publisher, description,
-            pages, size, price, discount, imageUrl, publicId } = body
+            pages, size, price, discount, imageUrl, publicId, stock } = body
         if (imageUrl && publicId) {
             return await Book.findByIdAndUpdate(id, {
                 name, year, genre, author, publisher, description,
-                pages, size, price, discount, imageUrl, publicId
+                pages, size, price, discount, imageUrl, publicId, stock
             }, {new: true})
         } else {
             return await Book.findByIdAndUpdate(id, {
                 name, year, genre, author, publisher, description,
-                pages, size, price, discount
+                pages, size, price, discount, stock
             }, {new: true})
         }
     },

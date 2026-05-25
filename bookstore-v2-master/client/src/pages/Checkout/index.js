@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa"
 
 import PayItem from "../../components/Shop/PayItem";
 import AddressSelect from "../../components/AddressSelect";
-import PayPal from "../../components/PayPal"
+
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -18,6 +18,7 @@ import format from "../../helper/format";
 import axios from "axios";
 import orderApi from "../../api/orderApi";
 import userApi from "../../api/userApi";
+import bookApi from "../../api/bookApi";
 
 import methodData from "./methodData"
 
@@ -39,7 +40,7 @@ export default function Checkout() {
   const [serviceList, setServiceList] = useState([])
   const [serviceId, setServiceId] = useState("")
 
-  const [showModalPayPal, setShowModalPayPal] = useState(false);
+
   const [loading, setLoading] = useState(false)
   const [loadingService, setLoadingService] = useState(false)
 
@@ -124,6 +125,22 @@ export default function Checkout() {
       if (shippingAddress?.fullAddress === "") {
         return
       }
+
+      setLoading(true)
+      try {
+        const checkStockRes = await bookApi.checkStock(products.map(p => ({ productId: p.product, quantity: p.quantity })));
+        if (checkStockRes.data?.error === 1) {
+          setLoading(false)
+          const outOfStock = checkStockRes.data?.data || []
+          const messages = outOfStock.map(item => `"${item.name}" chỉ còn ${item.available} cuốn`).join(', ')
+          return toast.error(`Không đủ số lượng tồn kho: ${messages}`, { autoClose: 3000 })
+        }
+      } catch (error) {
+        setLoading(false)
+        console.log(error)
+        return toast.error("Có lỗi xảy ra khi kiểm tra tồn kho!", { autoClose: 2000 })
+      }
+
       const paymentId = uuidv4()
       const body = {
         userId: currentUser && currentUser.userId ? currentUser.userId : "",
@@ -179,12 +196,21 @@ export default function Checkout() {
             }
             break
           }
-        case 2: 
-        {
-          // setShowModalPayPal(true)
-          alert("Tính năng đăng phát triển")
-          break;
-        }
+        case 2:
+          {
+            try {
+              setLoading(true)
+              const { payUrl } = await orderApi.getPayUrlVNPay({ amount: cartData?.total , paymentId })
+              await orderApi.create(body)
+              await userApi.updateCart(currentUser?.userId, {cart: []})
+              setLoading(false)
+              window.location.href = payUrl
+            } catch (error) {
+              setLoading(false)
+              console.log(error)
+            }
+            break
+          }
 
         default: {
           break
@@ -204,14 +230,7 @@ export default function Checkout() {
     })
   }, []);
 
-  const handleSuccess = useCallback(async () => {
-    try {
-      toast.success("Thanh toán thành công!", { autoClose: 2000 });
-      setShowModalPayPal(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+
 
   const handleChangeRadio = (e) => {
     const id = e.target.value;
@@ -320,18 +339,7 @@ export default function Checkout() {
 
   return (
     <div className="main">
-      <Modal
-          size="lg"
-          show={showModalPayPal}
-          onHide={() => setShowModalPayPal(false)}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Thanh toán</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <PayPal amount={(cartData?.total / 23805).toFixed(2)} onSuccess={handleSuccess} />
-          </Modal.Body>
-        </Modal>
+
       <Container>
         <Breadcrumb>
             <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>Trang chủ</Breadcrumb.Item>
